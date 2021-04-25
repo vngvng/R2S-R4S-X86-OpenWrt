@@ -1,6 +1,14 @@
 name: R2S-OpenWrt
 
 on:
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        description: 'Log level'     
+        required: true
+        default: 'warning'
+      tags:
+        description: 'R2S'
 #  schedule:
 #    - cron: 5 6 * * 0
   watch:
@@ -70,7 +78,7 @@ jobs:
     - name: Make Config
       run: |
         cd openwrt
-        mv ../SEED/R2S/config.seed .config
+        mv ../SEED/R2S/config.seed.vng .config
         make defconfig
 
     - name: Smart chmod
